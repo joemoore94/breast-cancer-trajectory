@@ -1,0 +1,31 @@
+name: trajectory
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - matplotlib
+  - seaborn
+  - jupyterlab
+  - ipykernel
+  - pyarrow
+  - h5py
+  - pytest
+  - mypy
+  - pandas-stubs
+  - scikit-image
+  - compilers
+  - pip
+  - pip:
+      - scanpy
+      - anndata
+      - palantir
+      - cellrank
+      - infercnvpy
+      - harmonypy
+      - scrublet
+      - GEOparse
+      - decoupler

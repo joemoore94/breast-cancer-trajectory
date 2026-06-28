@@ -1,0 +1,36 @@
+[project]
+name = "trajectory"
+version = "0.1.0"
+description = "Normal-to-malignant luminal epithelial trajectory in breast cancer"
+requires-python = ">=3.11"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[[tool.mypy.overrides]]
+module = [
+    "scanpy.*",
+    "anndata.*",
+    "palantir.*",
+    "cellrank.*",
+    "infercnvpy.*",
+    "harmonypy.*",
+    "scipy.*",
+    "GEOparse.*",
+    "decoupler.*",
+    "scrublet.*",
+]
+ignore_missing_imports = true
