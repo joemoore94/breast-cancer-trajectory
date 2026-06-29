@@ -62,7 +62,7 @@ def plot_umap_tissue(adata_name: str = "adata_qc") -> None:
     save_fig(fig, "umap_tissue_type")
 
 
-def plot_umap_pseudotime(adata_name: str = "adata_trajectory") -> None:
+def plot_umap_pseudotime(adata_name: str = "adata_programs") -> None:
     """UMAP colored by Palantir pseudotime."""
     apply_style(scatter=True)
     adata = load_adata(adata_name)
@@ -99,7 +99,7 @@ def plot_umap_pseudotime(adata_name: str = "adata_trajectory") -> None:
     save_fig(fig, "umap_pseudotime_panel")
 
 
-def plot_directionality_comparison(adata_name: str = "adata_trajectory") -> None:
+def plot_directionality_comparison(adata_name: str = "adata_programs") -> None:
     """Scatter: Palantir pseudotime vs CytoTRACE pseudotime."""
     apply_style()
     adata = load_adata(adata_name)
@@ -127,7 +127,7 @@ def plot_directionality_comparison(adata_name: str = "adata_trajectory") -> None
     save_fig(fig, "directionality_comparison")
 
 
-def plot_pseudotime_heatmap(adata_name: str = "adata_trajectory") -> None:
+def plot_pseudotime_heatmap(adata_name: str = "adata_programs") -> None:
     """Gene expression heatmap ordered by pseudotime."""
     apply_style()
     adata = load_adata(adata_name)

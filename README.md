@@ -26,7 +26,59 @@ The analysis subsets to luminal epithelial cells (KRT8+/KRT14−/GATA3+), infers
 
 **Xenium panel mapping.** Trajectory-associated DE genes are cross-referenced against the 380-gene Xenium breast panel from the companion segmentation-benchmark project, identifying which progression markers are spatially measurable and setting up future spatial trajectory analysis.
 
-## Pipeline
+## Workflow
+
+The preferred build path is Snakemake. It tracks each derived file, resumes
+from the last completed step, and keeps long-running outputs tied to the script
+that produced them.
+
+```bash
+conda env create -f environment.yml
+conda activate trajectory
+pip install -e .
+
+# Preview the dependency graph without running anything
+snakemake -n
+
+# Run the full analysis
+snakemake --cores 4
+```
+
+The workflow configuration lives in `configs/workflow.yaml`. Increase or
+decrease thread counts there, then rerun the same `snakemake --cores N`
+command. Logs for each step are written to `logs/`.
+
+Useful targets:
+
+```bash
+# Stop after the integrated all-cell object
+snakemake --cores 4 data/processed/adata_qc.h5ad
+
+# Stop after Palantir pseudotime
+snakemake --cores 4 data/processed/adata_trajectory.h5ad
+
+# Rebuild only figures from existing processed data/tables
+snakemake --cores 1 results/figures/umap_pseudotime_panel.png
+
+# Draw a DAG if graphviz is installed
+snakemake --dag | dot -Tpng > results/figures/snakemake_dag.png
+```
+
+The full workflow produces:
+
+```text
+data/processed/adata_raw.h5ad
+data/processed/adata_qc.h5ad
+data/processed/adata_luminal.h5ad
+data/processed/adata_luminal_cnv.h5ad
+data/processed/adata_trajectory.h5ad
+data/processed/adata_directionality.h5ad
+data/processed/adata_programs.h5ad
+results/tables/*.csv
+results/figures/*.png
+```
+
+## Script Steps
 
 ```
 scripts/download_geo.py       # Download GSE161529_RAW.tar from GEO
@@ -35,13 +87,15 @@ scripts/run_qc.py             # QC, normalize, HVG, PCA, Harmony → adata_qc.h5
 scripts/run_subset_luminal.py # Marker scoring, luminal subset → adata_luminal.h5ad
 scripts/run_cnv.py            # infercnvpy, malignancy classification → adata_luminal_cnv.h5ad
 scripts/run_pseudotime.py     # Palantir diffusion map + pseudotime → adata_trajectory.h5ad
-scripts/run_directionality.py # CellRank + CytoTRACE comparison
-scripts/run_de_programs.py    # DE along pseudotime axis
+scripts/run_directionality.py # CellRank + CytoTRACE comparison → adata_directionality.h5ad
+scripts/run_de_programs.py    # DE along pseudotime axis → adata_programs.h5ad
 scripts/run_xenium_mapping.py # Cross-reference with Xenium panel
 scripts/make_figures.py       # Generate all figures
 ```
 
 ## Setup
+
+Use this only if you want to run scripts manually instead of using Snakemake.
 
 ```bash
 conda env create -f environment.yml

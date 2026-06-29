@@ -73,7 +73,7 @@ def early_vs_late_de(
 
 
 def main() -> None:
-    adata = load_adata("adata_trajectory")
+    adata = load_adata("adata_directionality")
     print(f"Loaded: {adata.n_obs} cells")
 
     TABLES_DIR.mkdir(parents=True, exist_ok=True)
@@ -94,7 +94,7 @@ def main() -> None:
     print(f"  Upregulated in late: {(sig['logfoldchanges'] > 0).sum()}")
     print(f"  Downregulated in late: {(sig['logfoldchanges'] < 0).sum()}")
 
-    save_adata(adata, "adata_trajectory")
+    save_adata(adata, "adata_programs")
 
 
 if __name__ == "__main__":

@@ -15,6 +15,7 @@ dependencies:
   - h5py
   - pytest
   - mypy
+  - snakemake-minimal
   - pandas-stubs
   - scikit-image
   - compilers

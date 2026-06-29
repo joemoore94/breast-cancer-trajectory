@@ -23,12 +23,12 @@ def main() -> None:
     estimator = run_cellrank_pseudotime(adata)
 
     df = compare_directionality(adata)
+    TABLES_DIR.mkdir(parents=True, exist_ok=True)
     if not df.empty:
-        TABLES_DIR.mkdir(parents=True, exist_ok=True)
-        df.to_csv(TABLES_DIR / "directionality_comparison.csv", index=False)
         print(df.to_string(index=False))
+    df.to_csv(TABLES_DIR / "directionality_comparison.csv", index=False)
 
-    save_adata(adata, "adata_trajectory")
+    save_adata(adata, "adata_directionality")
 
 
 if __name__ == "__main__":

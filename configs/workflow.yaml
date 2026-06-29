@@ -1,0 +1,23 @@
+# Snakemake workflow settings for the breast cancer trajectory analysis.
+
+threads:
+  default: 1
+  integration: 4
+  cnv: 4
+  pseudotime: 4
+  directionality: 4
+  de: 4
+  figures: 1
+
+results:
+  figures:
+    - results/figures/qc_violins.png
+    - results/figures/umap_tissue_type.png
+    - results/figures/umap_pseudotime_panel.png
+    - results/figures/directionality_comparison.png
+    - results/figures/pseudotime_heatmap.png
+  tables:
+    - results/tables/directionality_comparison.csv
+    - results/tables/de_pseudotime_bins.csv
+    - results/tables/de_early_vs_late.csv
+    - results/tables/xenium_panel_trajectory_genes.csv
