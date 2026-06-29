@@ -4,7 +4,7 @@ Can we reconstruct a normal-to-malignant luminal epithelial trajectory from a st
 
 ## Dataset
 
-Pal et al. (2021), GEO accession [GSE161529](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE161529). 421,761 cells from 55 patients on 10x Chromium, spanning normal breast tissue (reduction mammoplasties), BRCA1 preneoplastic tissue, and malignant tumors across ER+, HER2+, and TNBC subtypes. The normal and preneoplastic samples are the key advantage over tumor-only atlases — they anchor the healthy end of the trajectory and provide a known high-risk intermediate state (BRCA1 carriers) that should sit between normal and malignant on the inferred axis.
+Pal et al. (2021), GEO accession [GSE161529](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE161529). 421,761 cells from 55 patients on 10x Chromium, spanning normal breast tissue (reduction mammoplasties), BRCA1 preneoplastic tissue, and malignant tumors across ER+, HER2+, and TNBC subtypes. The normal and preneoplastic samples are the key advantage over tumor-only atlases - they anchor the healthy end of the trajectory and provide a known high-risk intermediate state (BRCA1 carriers) that should sit between normal and malignant on the inferred axis.
 
 69 samples total: 24 normal (13 patients, some with sorted epithelial and total fractions), 4 BRCA1 preneoplastic, 4 TNBC, 4 TNBC-BRCA1, 6 HER2+, 20 ER+ (including tumor/lymph-node pairs), and 3 male ER+. Sample metadata extracted from the companion [GitHub repo](https://github.com/yunshun/HumanBreast10X) (Chen et al., *Scientific Data*, 2022).
 
@@ -105,4 +105,4 @@ pip install -e .
 
 ## Results
 
-*Analysis in progress — figures and findings will be added as each pipeline step completes.*
+*Analysis in progress - figures and findings will be added as each pipeline step completes.*
